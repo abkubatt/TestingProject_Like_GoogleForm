@@ -1,14 +1,14 @@
 package kg.megacom.test_app.services;
 
-import kg.megacom.test_app.models.Test_Question;
+import kg.megacom.test_app.models.TestSubjectQuestion;
 
 public interface Test_QuestionService {
 
-    Test_Question save();
+    TestSubjectQuestion save();
 
-    Test_Question findById(Long id);
+    TestSubjectQuestion findById(Long id);
 
-    Test_Question update(Test_Question test_question);
+    TestSubjectQuestion update(TestSubjectQuestion test_Subject_question);
 
-    Test_Question delete(Test_Question test_question);
+    TestSubjectQuestion delete(TestSubjectQuestion test_Subject_question);
 }

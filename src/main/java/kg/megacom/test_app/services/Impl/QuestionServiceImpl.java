@@ -14,6 +14,8 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public Question save() {
+        Question question = new Question();
+
         return null;
     }
 

@@ -1,5 +1,6 @@
 package kg.megacom.test_app;
 
+import kg.megacom.test_app.models.Question;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -9,12 +10,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class TestAppApplication {
 
     public static void main(String[] args) {
-
-        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(TestAppApplication.class);
-        for (String s: applicationContext.getBeanDefinitionNames()) {
-            System.out.println(s);
-        }
-        //SpringApplication.run(TestAppApplication.class, args);
+        SpringApplication.run(TestAppApplication.class, args);
 
     }
 
