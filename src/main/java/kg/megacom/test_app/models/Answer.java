@@ -19,5 +19,5 @@ public class Answer {
     private Question question;
     private boolean is_active;
 
-
+    
 }

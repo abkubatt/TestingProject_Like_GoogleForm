@@ -2,17 +2,20 @@ package kg.megacom.test_app.services.Impl;
 
 import kg.megacom.test_app.dao.Test_QuestionDao;
 import kg.megacom.test_app.models.TestSubjectQuestion;
-import kg.megacom.test_app.services.Test_QuestionService;
+import kg.megacom.test_app.services.TestSubjectQuestionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class Test_QuestionServiceImpl implements Test_QuestionService {
-
+public class TestSubjectQuestionServiceImpl implements TestSubjectQuestionService {
+    @Autowired
     private Test_QuestionDao test_questionDao;
 
+
     @Override
-    public TestSubjectQuestion save() {
-        return null;
+    public TestSubjectQuestion save(TestSubjectQuestion testSubjectQuestion) {
+        TestSubjectQuestion testSubjectQuestionSaved = test_questionDao.save(testSubjectQuestion);
+        return testSubjectQuestionSaved;
     }
 
     @Override

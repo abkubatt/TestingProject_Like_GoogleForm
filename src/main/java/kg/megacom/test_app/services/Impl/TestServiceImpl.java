@@ -6,14 +6,19 @@ import kg.megacom.test_app.services.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TestServiceImpl implements TestService {
-
+    @Autowired
     private TestDao testDao;
 
+
     @Override
-    public Test save() {
-        return null;
+    public Test save(Test test) {
+        test.setActive(true);
+        Test testSaved = testDao.save(test);
+        return testSaved;
     }
 
     @Override
@@ -28,6 +33,11 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public Test delete(Test test) {
+        return null;
+    }
+
+    @Override
+    public List<Test> findAllByActive() {
         return null;
     }
 }

@@ -15,7 +15,7 @@ public class Result {
     @ManyToOne
     @JoinColumn(name = "test_id")
     private Test test;
-    private String user;
+    private String testUser;
     private String result;
     private Date date;
 

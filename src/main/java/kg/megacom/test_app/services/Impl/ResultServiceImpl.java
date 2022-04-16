@@ -8,12 +8,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ResultServiceImpl implements ResultService {
-
+    @Autowired
     private ResultDao resultDao;
 
+
     @Override
-    public Result save() {
-        return null;
+    public Result save(Result result) {
+        Result resultSaved = resultDao.save(result);
+        return resultSaved;
     }
 
     @Override
@@ -21,13 +23,5 @@ public class ResultServiceImpl implements ResultService {
         return resultDao.findById(id).orElse(null);
     }
 
-    @Override
-    public Result update(Result result) {
-        return null;
-    }
 
-    @Override
-    public Result delete(Result result) {
-        return null;
-    }
 }

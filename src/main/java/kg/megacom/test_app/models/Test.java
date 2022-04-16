@@ -3,10 +3,7 @@ package kg.megacom.test_app.models;
 import lombok.Data;
 import lombok.Generated;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -18,5 +15,7 @@ public class Test {
     private Long id;
     private String name;
     private String navi_user;
+    @Column
+    private boolean active;
 
 }

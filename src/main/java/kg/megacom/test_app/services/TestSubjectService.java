@@ -2,9 +2,9 @@ package kg.megacom.test_app.services;
 
 import kg.megacom.test_app.models.TestSubject;
 
-public interface Test_SubjectService {
+public interface TestSubjectService {
 
-    TestSubject save();
+    TestSubject save(TestSubject testSubject);
 
     TestSubject findById(Long id);
 
