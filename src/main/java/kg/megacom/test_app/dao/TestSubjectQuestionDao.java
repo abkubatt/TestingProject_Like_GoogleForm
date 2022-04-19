@@ -1,9 +1,9 @@
 package kg.megacom.test_app.dao;
 
-import kg.megacom.test_app.models.TestSubjectQuestion;
+import kg.megacom.test_app.models.entities.TestSubjectQuestion;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface Test_QuestionDao extends JpaRepository<TestSubjectQuestion, Long> {
+public interface TestSubjectQuestionDao extends JpaRepository<TestSubjectQuestion, Long> {
 }

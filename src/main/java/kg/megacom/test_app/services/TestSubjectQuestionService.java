@@ -1,6 +1,6 @@
 package kg.megacom.test_app.services;
 
-import kg.megacom.test_app.models.TestSubjectQuestion;
+import kg.megacom.test_app.models.entities.TestSubjectQuestion;
 
 public interface TestSubjectQuestionService {
 

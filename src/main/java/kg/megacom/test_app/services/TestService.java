@@ -1,6 +1,6 @@
 package kg.megacom.test_app.services;
 
-import kg.megacom.test_app.models.Test;
+import kg.megacom.test_app.models.entities.Test;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
 package kg.megacom.test_app.services.Impl;
 
 import kg.megacom.test_app.dao.QuestionDao;
-import kg.megacom.test_app.models.Question;
-import kg.megacom.test_app.models.Subject;
+import kg.megacom.test_app.models.entities.Question;
+import kg.megacom.test_app.models.entities.Subject;
 import kg.megacom.test_app.services.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,12 +31,21 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public Question update(Question question) {
-        return null;
+        boolean isExists = questionDao.existsById(question.getId());
+        if (!isExists){
+            return null;
+        }
+        else{
+            Question updatedQuestion = questionDao.save(question);
+            return updatedQuestion;
+        }
     }
 
     @Override
     public Question delete(Question question) {
-        return null;
+        question.set_active(false);
+        Question deletedQuestion = update(question);
+        return deletedQuestion;
     }
 
     @Override

@@ -1,8 +1,8 @@
 package kg.megacom.test_app.services.Impl;
 
 import kg.megacom.test_app.dao.SubjectDao;
-import kg.megacom.test_app.models.Language;
-import kg.megacom.test_app.models.Subject;
+import kg.megacom.test_app.models.entities.Language;
+import kg.megacom.test_app.models.entities.Subject;
 import kg.megacom.test_app.services.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,12 +30,21 @@ public class SubjectServiceImpl implements SubjectService {
 
     @Override
     public Subject update(Subject subject) {
-        return null;
+        boolean isExists = subjectDao.existsById(subject.getId());
+        if (!isExists){
+            return null;
+        }
+        else{
+            Subject updatedSubject = subjectDao.save(subject);
+            return updatedSubject;
+        }
     }
 
     @Override
     public Subject delete(Subject subject) {
-        return null;
+        subject.set_active(false);
+        Subject deletedSubject = update(subject);
+        return deletedSubject;
     }
 
     @Override

@@ -1,7 +1,7 @@
 package kg.megacom.test_app.services.Impl;
 
 import kg.megacom.test_app.dao.ResultDao;
-import kg.megacom.test_app.models.Result;
+import kg.megacom.test_app.models.entities.Result;
 import kg.megacom.test_app.services.ResultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

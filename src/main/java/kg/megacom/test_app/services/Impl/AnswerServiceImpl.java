@@ -1,12 +1,10 @@
 package kg.megacom.test_app.services.Impl;
 
 import kg.megacom.test_app.dao.AnswerDao;
-import kg.megacom.test_app.models.Answer;
-import kg.megacom.test_app.models.Question;
+import kg.megacom.test_app.models.entities.Answer;
+import kg.megacom.test_app.models.entities.Question;
 import kg.megacom.test_app.services.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,12 +29,20 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public Answer update(Answer answer) {
-        return null;
+        boolean isExists = answerDao.existsById(answer.getId());
+        if (!isExists){
+            return null;
+        }else{
+            Answer updatedAnswer = answerDao.save(answer);
+            return updatedAnswer;
+        }
     }
 
     @Override
     public Answer delete(Answer answer) {
-        return null;
+        answer.set_active(false);
+        Answer deletedAnswer = update(answer);
+        return deletedAnswer;
     }
 
     @Override

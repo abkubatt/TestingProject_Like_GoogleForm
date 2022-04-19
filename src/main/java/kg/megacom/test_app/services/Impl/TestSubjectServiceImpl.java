@@ -1,7 +1,7 @@
 package kg.megacom.test_app.services.Impl;
 
-import kg.megacom.test_app.dao.Test_SubjectDao;
-import kg.megacom.test_app.models.TestSubject;
+import kg.megacom.test_app.dao.TestSubjectDao;
+import kg.megacom.test_app.models.entities.TestSubject;
 import kg.megacom.test_app.services.TestSubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,23 +9,29 @@ import org.springframework.stereotype.Service;
 @Service
 public class TestSubjectServiceImpl implements TestSubjectService {
     @Autowired
-    private Test_SubjectDao test_subjectDao;
+    private TestSubjectDao testSubjectDao;
 
 
     @Override
     public TestSubject save(TestSubject testSubject) {
-        TestSubject testSubjectSaved = test_subjectDao.save(testSubject);
+        TestSubject testSubjectSaved = testSubjectDao.save(testSubject);
         return testSubjectSaved;
     }
 
     @Override
     public TestSubject findById(Long id) {
-        return test_subjectDao.findById(id).orElse(null);
+        return testSubjectDao.findById(id).orElse(null);
     }
 
     @Override
-    public TestSubject update(TestSubject test_subject) {
-        return null;
+    public TestSubject update(TestSubject testSubject){
+        boolean isExists = testSubjectDao.existsById(testSubject.getId());
+        if (!isExists){
+            return null;
+        }else{
+            TestSubject updatedTestSubject = testSubjectDao.save(testSubject);
+            return updatedTestSubject;
+        }
     }
 
     @Override

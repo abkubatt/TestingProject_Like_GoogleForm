@@ -1,18 +1,18 @@
 package kg.megacom.test_app.services;
 
-import kg.megacom.test_app.models.Language;
-
-import java.util.List;
+import kg.megacom.test_app.models.dto.LanguageDto;
+import kg.megacom.test_app.models.entities.Language;
 
 public interface LanguageService {
 
-    Language save(Language language);
+    LanguageDto save(LanguageDto languageDto);
 
-    Language findById(Long id);
+    LanguageDto findById(Long id);
 
-    Language update(Language language);
+    LanguageDto update(LanguageDto languageDto);
 
-    Language delete(Language language);
+    LanguageDto delete(LanguageDto languageDto);
 
-    //List<Language> findAllByActive();
+
+
 }

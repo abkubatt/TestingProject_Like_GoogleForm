@@ -1,5 +1,6 @@
-package kg.megacom.test_app.models;
+package kg.megacom.test_app.models.entities;
 
+import kg.megacom.test_app.models.entities.Language;
 import lombok.Data;
 
 import javax.persistence.*;

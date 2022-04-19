@@ -1,8 +1,6 @@
-package kg.megacom.test_app.models;
+package kg.megacom.test_app.models.entities;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 
