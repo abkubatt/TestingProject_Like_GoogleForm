@@ -1,5 +1,6 @@
 package kg.megacom.test_app.controllers;
 
+import kg.megacom.test_app.models.dto.TestDto;
 import kg.megacom.test_app.models.entities.Test;
 import kg.megacom.test_app.services.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,11 @@ public class TestController {
 
     @GetMapping("/save")
     public String testSaveTest(){
-        Test test = new Test();
+        TestDto test = new TestDto();
         test.setName("Java");
         test.setNavi_user("Sanzhar");
 
-        Test savedTest = testService.save(test);
+        TestDto savedTest = testService.save(test);
 
         return savedTest.getName();
     }

@@ -1,12 +1,12 @@
 package kg.megacom.test_app.services;
 
-import kg.megacom.test_app.models.entities.Result;
+import kg.megacom.test_app.models.dto.ResultDto;
 
 public interface ResultService {
 
-    Result save(Result result);
+    ResultDto save(ResultDto resultDto);
 
-    Result findById(Long id);
+    ResultDto findById(Long id);
 
 
 }

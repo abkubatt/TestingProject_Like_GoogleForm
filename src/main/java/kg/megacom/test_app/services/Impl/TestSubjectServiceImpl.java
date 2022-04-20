@@ -1,6 +1,8 @@
 package kg.megacom.test_app.services.Impl;
 
 import kg.megacom.test_app.dao.TestSubjectDao;
+import kg.megacom.test_app.mappers.TestSubjectMapper;
+import kg.megacom.test_app.models.dto.TestSubjectDto;
 import kg.megacom.test_app.models.entities.TestSubject;
 import kg.megacom.test_app.services.TestSubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,32 +12,34 @@ import org.springframework.stereotype.Service;
 public class TestSubjectServiceImpl implements TestSubjectService {
     @Autowired
     private TestSubjectDao testSubjectDao;
-
-
+    private TestSubjectMapper testSubjectMapper = TestSubjectMapper.INSTANCE;
     @Override
-    public TestSubject save(TestSubject testSubject) {
+    public TestSubjectDto save(TestSubjectDto testSubjectDto) {
+        TestSubject testSubject = testSubjectMapper.testSubjectDtoToTestSubject(testSubjectDto);
         TestSubject testSubjectSaved = testSubjectDao.save(testSubject);
-        return testSubjectSaved;
+        return testSubjectMapper.testSubjectToTestSubjectDto(testSubjectSaved);
     }
 
     @Override
-    public TestSubject findById(Long id) {
-        return testSubjectDao.findById(id).orElse(null);
+    public TestSubjectDto findById(Long id) {
+        TestSubject testSubject = testSubjectDao.findById(id).orElse(null);
+        return testSubjectMapper.testSubjectToTestSubjectDto(testSubject);
     }
 
     @Override
-    public TestSubject update(TestSubject testSubject){
-        boolean isExists = testSubjectDao.existsById(testSubject.getId());
+    public TestSubjectDto update(TestSubjectDto testSubjectDto){
+        boolean isExists = testSubjectDao.existsById(testSubjectDto.getId());
         if (!isExists){
             return null;
         }else{
+            TestSubject testSubject = testSubjectMapper.testSubjectDtoToTestSubject(testSubjectDto);
             TestSubject updatedTestSubject = testSubjectDao.save(testSubject);
-            return updatedTestSubject;
+            return testSubjectMapper.testSubjectToTestSubjectDto(updatedTestSubject);
         }
     }
 
     @Override
-    public TestSubject delete(TestSubject test_subject) {
+    public TestSubjectDto delete(TestSubjectDto test_subject) {
         return null;
     }
 }

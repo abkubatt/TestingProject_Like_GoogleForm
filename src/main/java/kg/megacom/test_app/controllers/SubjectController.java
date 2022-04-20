@@ -1,5 +1,7 @@
 package kg.megacom.test_app.controllers;
 
+import kg.megacom.test_app.models.dto.LanguageDto;
+import kg.megacom.test_app.models.dto.SubjectDto;
 import kg.megacom.test_app.models.entities.Language;
 import kg.megacom.test_app.models.entities.Subject;
 import kg.megacom.test_app.services.SubjectService;
@@ -17,13 +19,13 @@ public class SubjectController {
 
     @GetMapping("/save")
     public String toSaveSubject(){
-        Subject subject = new Subject();
+        SubjectDto subject = new SubjectDto();
         subject.set_active(true);
         subject.setDescription("OOP");
-        subject.setLanguage(new Language());
+        subject.setLanguage(new LanguageDto());
         subject.setTitle("OOP");
 
-        Subject savedSubject = subjectService.save(subject);
+        SubjectDto savedSubject = subjectService.save(subject);
         return savedSubject.getTitle();
     }
 }

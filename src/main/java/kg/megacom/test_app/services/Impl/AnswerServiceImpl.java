@@ -1,6 +1,8 @@
 package kg.megacom.test_app.services.Impl;
 
 import kg.megacom.test_app.dao.AnswerDao;
+import kg.megacom.test_app.mappers.AnswerMapper;
+import kg.megacom.test_app.models.dto.AnswerDto;
 import kg.megacom.test_app.models.entities.Answer;
 import kg.megacom.test_app.models.entities.Question;
 import kg.megacom.test_app.services.AnswerService;
@@ -14,40 +16,46 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Autowired
     private AnswerDao answerDao;
+    private AnswerMapper answerMapper = AnswerMapper.INSTANCE;
 
     @Override
-    public Answer save(Answer answer) {
+    public AnswerDto save(AnswerDto answerDto) {
+        Answer answer = answerMapper.answerDtoToAnswer(answerDto);
         answer.set_active(true);
         Answer answerSaved = answerDao.save(answer);
-        return answerSaved;
+        return answerMapper.answerToAnswerDto(answerSaved);
     }
 
     @Override
-    public Answer findById(Long id) {
-        return answerDao.findById(id).orElse(null);
+    public AnswerDto findById(Long id) {
+        Answer answer = answerDao.findById(id).orElse(null);
+        return answerMapper.answerToAnswerDto(answer);
     }
 
     @Override
-    public Answer update(Answer answer) {
-        boolean isExists = answerDao.existsById(answer.getId());
+    public AnswerDto update(AnswerDto answerDto) {
+        boolean isExists = answerDao.existsById(answerDto.getId());
         if (!isExists){
             return null;
         }else{
+            Answer answer = answerMapper.answerDtoToAnswer(answerDto);
             Answer updatedAnswer = answerDao.save(answer);
-            return updatedAnswer;
+            return answerMapper.answerToAnswerDto(updatedAnswer);
         }
     }
 
     @Override
-    public Answer delete(Answer answer) {
+    public AnswerDto delete(AnswerDto answerDto) {
+        Answer answer = answerMapper.answerDtoToAnswer(answerDto);
         answer.set_active(false);
-        Answer deletedAnswer = update(answer);
-        return deletedAnswer;
+        AnswerDto deletedAnswerDto = update(answerMapper.answerToAnswerDto(answer));
+        return deletedAnswerDto;
     }
 
     @Override
-    public List<Answer> findAllByQuestion(Question question) {
-        return null;
+    public List<AnswerDto> findAllByQuestion(Question question) {
+        List<Answer> answers = answerDao.findAllByQuestion(question);
+        return answerMapper.answerListToAnswerDtoList(answers);
     }
 
 }

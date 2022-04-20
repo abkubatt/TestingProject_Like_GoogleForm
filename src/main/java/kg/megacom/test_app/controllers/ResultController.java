@@ -1,5 +1,7 @@
 package kg.megacom.test_app.controllers;
 
+import kg.megacom.test_app.models.dto.ResultDto;
+import kg.megacom.test_app.models.dto.TestDto;
 import kg.megacom.test_app.models.entities.Result;
 import kg.megacom.test_app.models.entities.Test;
 import kg.megacom.test_app.services.ResultService;
@@ -18,13 +20,13 @@ public class ResultController {
 
     @GetMapping
     public String toSaveResult(){
-        Result result = new Result();
+        ResultDto result = new ResultDto();
         result.setResult("you completed an internship");
         result.setDate(new Date());
-        result.setTest(new Test());
+        result.setTest(new TestDto());
         result.setTestUser("Abdulmajit Kubatbekov");
 
-        Result savedResult = resultService.save(result);
+        ResultDto savedResult = resultService.save(result);
         return savedResult.getResult();
     }
 }

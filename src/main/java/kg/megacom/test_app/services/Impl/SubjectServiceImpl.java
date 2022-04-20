@@ -1,6 +1,8 @@
 package kg.megacom.test_app.services.Impl;
 
 import kg.megacom.test_app.dao.SubjectDao;
+import kg.megacom.test_app.mappers.SubjectMapper;
+import kg.megacom.test_app.models.dto.SubjectDto;
 import kg.megacom.test_app.models.entities.Language;
 import kg.megacom.test_app.models.entities.Subject;
 import kg.megacom.test_app.services.SubjectService;
@@ -15,40 +17,47 @@ public class SubjectServiceImpl implements SubjectService {
     @Autowired
     private SubjectDao subjectDao;
 
+    private SubjectMapper subjectMapper = SubjectMapper.INSTANCE;
 
     @Override
-    public Subject save(Subject subject) {
+    public SubjectDto save(SubjectDto subjectDto) {
+        Subject subject = subjectMapper.subjectDtoToSubject(subjectDto);
         subject.set_active(true);
         Subject subjectSaved = subjectDao.save(subject);
-        return subjectSaved;
+        return subjectMapper.subjectToSubjectDto(subjectSaved);
     }
 
     @Override
-    public Subject findById(Long id) {
-        return subjectDao.findById(id).orElse(null);
+    public SubjectDto findById(Long id) {
+        Subject subject = subjectDao.findById(id).orElse(null);
+        return subjectMapper.subjectToSubjectDto(subject);
     }
 
     @Override
-    public Subject update(Subject subject) {
-        boolean isExists = subjectDao.existsById(subject.getId());
+    public SubjectDto update(SubjectDto subjectDto) {
+        boolean isExists = subjectDao.existsById(subjectDto.getId());
         if (!isExists){
             return null;
         }
         else{
+            Subject subject = subjectMapper.subjectDtoToSubject(subjectDto);
             Subject updatedSubject = subjectDao.save(subject);
-            return updatedSubject;
+            return subjectMapper.subjectToSubjectDto(updatedSubject);
         }
     }
 
+
     @Override
-    public Subject delete(Subject subject) {
+    public SubjectDto delete(SubjectDto subjectDto) {
+        Subject subject = subjectMapper.subjectDtoToSubject(subjectDto);
         subject.set_active(false);
-        Subject deletedSubject = update(subject);
+        SubjectDto deletedSubject = update(subjectMapper.subjectToSubjectDto(subject));
         return deletedSubject;
     }
 
     @Override
-    public List<Subject> findAllByLanguage(Language language) {
-        return null;
+    public List<SubjectDto> findAllByLanguage(Language language) {
+        List<Subject> subjects = subjectDao.findAllByLanguage(language);
+        return subjectMapper.subjectListToSubjectDtoList(subjects);
     }
 }

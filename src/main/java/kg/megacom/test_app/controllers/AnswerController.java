@@ -1,5 +1,7 @@
 package kg.megacom.test_app.controllers;
 
+import kg.megacom.test_app.models.dto.AnswerDto;
+import kg.megacom.test_app.models.dto.QuestionDto;
 import kg.megacom.test_app.models.entities.Answer;
 import kg.megacom.test_app.models.entities.Question;
 import kg.megacom.test_app.services.AnswerService;
@@ -17,13 +19,13 @@ public class AnswerController {
 
     @GetMapping("/save")
     public String toSaveAnswer(){
-        Answer answer = new Answer();
+        AnswerDto answer = new AnswerDto();
         answer.setAnswer("private");
         answer.set_active(true);
-        answer.setQuestion(new Question());
+        answer.setQuestion(new QuestionDto());
         answer.set_true(true);
 
-        Answer savedAnswer = answerService.save(answer);
+        AnswerDto savedAnswer = answerService.save(answer);
         return savedAnswer.getAnswer();
     }
 }

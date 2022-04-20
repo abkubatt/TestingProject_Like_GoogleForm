@@ -1,6 +1,8 @@
 package kg.megacom.test_app.services.Impl;
 
 import kg.megacom.test_app.dao.QuestionDao;
+import kg.megacom.test_app.mappers.QuestionMapper;
+import kg.megacom.test_app.models.dto.QuestionDto;
 import kg.megacom.test_app.models.entities.Question;
 import kg.megacom.test_app.models.entities.Subject;
 import kg.megacom.test_app.services.QuestionService;
@@ -15,41 +17,46 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Autowired
     private QuestionDao questionDao;
-
+    private QuestionMapper questionMapper = QuestionMapper.INSTANCE;
 
     @Override
-    public Question save(Question question) {
+    public QuestionDto save(QuestionDto questionDto) {
+        Question question = questionMapper.questionDtoToQuestion(questionDto);
         question.set_active(true);
         Question questionSaved = questionDao.save(question);
-        return questionSaved;
+        return questionMapper.questionToQuestionDto(questionSaved);
     }
 
     @Override
-    public Question findById(Long id) {
-        return questionDao.findById(id).orElse(null);
+    public QuestionDto findById(Long id) {
+        Question question = questionDao.findById(id).orElse(null);
+        return questionMapper.questionToQuestionDto(question);
     }
 
     @Override
-    public Question update(Question question) {
-        boolean isExists = questionDao.existsById(question.getId());
+    public QuestionDto update(QuestionDto questionDto) {
+        boolean isExists = questionDao.existsById(questionDto.getId());
         if (!isExists){
             return null;
         }
         else{
+            Question question = questionMapper.questionDtoToQuestion(questionDto);
             Question updatedQuestion = questionDao.save(question);
-            return updatedQuestion;
+            return questionMapper.questionToQuestionDto(updatedQuestion);
         }
     }
 
     @Override
-    public Question delete(Question question) {
+    public QuestionDto delete(QuestionDto questionDto) {
+        Question question = questionMapper.questionDtoToQuestion(questionDto);
         question.set_active(false);
-        Question deletedQuestion = update(question);
+        QuestionDto deletedQuestion = update(questionMapper.questionToQuestionDto(question));
         return deletedQuestion;
     }
 
     @Override
-    public List<Question> findAllBySubject(Subject subject) {
-        return null;
+    public List<QuestionDto> findAllBySubject(Subject subject) {
+        List<Question> questions = questionDao.findAllBySubject(subject);
+        return questionMapper.questionListToQuestionDtoList(questions);
     }
 }

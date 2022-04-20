@@ -1,6 +1,8 @@
 package kg.megacom.test_app.services.Impl;
 
 import kg.megacom.test_app.dao.TestDao;
+import kg.megacom.test_app.mappers.TestMapper;
+import kg.megacom.test_app.models.dto.TestDto;
 import kg.megacom.test_app.models.entities.Test;
 import kg.megacom.test_app.services.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,39 +15,46 @@ public class TestServiceImpl implements TestService {
     @Autowired
     private TestDao testDao;
 
+    private TestMapper testMapper = TestMapper.INSTANCE;
+
 
     @Override
-    public Test save(Test test) {
+    public TestDto save(TestDto testDto) {
+        Test test = testMapper.testDtoToTest(testDto);
         test.setActive(true);
         Test testSaved = testDao.save(test);
-        return testSaved;
+        return testMapper.testToTestDto(testSaved);
     }
 
     @Override
-    public Test findById(Long id) {
-        return testDao.findById(id).orElse(null);
+    public TestDto findById(Long id) {
+        Test test = testDao.findById(id).orElse(null);
+        return testMapper.testToTestDto(test);
     }
 
     @Override
-    public Test update(Test test) {
-        boolean isExists = testDao.existsById(test.getId());
+    public TestDto update(TestDto testDto) {
+        boolean isExists = testDao.existsById(testDto.getId());
         if (!isExists){
             return null;
         }else{
+            Test test = testMapper.testDtoToTest(testDto);
             Test updatedTest = testDao.save(test);
-            return updatedTest;
+            return testMapper.testToTestDto(updatedTest);
         }
     }
 
     @Override
-    public Test delete(Test test) {
+    public TestDto delete(TestDto testDto) {
+        Test test = testMapper.testDtoToTest(testDto);
         test.setActive(false);
-        Test deletedTest = update(test);
+        TestDto deletedTest = update(testMapper.testToTestDto(test));
         return deletedTest;
     }
 
     @Override
-    public List<Test> findAllByActive() {
-        return null;
+    public List<TestDto> findAllByActive() {
+        List<Test> tests = testDao.findAllByActive();
+        return testMapper.testListToTestDtoList(tests);
     }
 }

@@ -1,5 +1,6 @@
 package kg.megacom.test_app.controllers;
 
+import kg.megacom.test_app.models.dto.LanguageDto;
 import kg.megacom.test_app.models.entities.Language;
 import kg.megacom.test_app.services.LanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +17,19 @@ public class LanguageController {
 
     @GetMapping("/save")
     public String testSaveLanguage(){
-        Language language = new Language();
+        LanguageDto language = new LanguageDto();
         language.setName("Java");
-        Language savedLang = languageService.save(language);
+        LanguageDto savedLang = languageService.save(language);
         return savedLang.getName();
     }
+
+
+
+
+
+
+
+
 //    @GetMapping("/findAllByIs_activeIsTrue")
 //    public List<Language> toFindAllByIs_activeIsTrueLanguage(){
 //        List<Language> findAllByIs_activeIsTrueLanguage = languageService.findAllByIs_activeIsTrue();

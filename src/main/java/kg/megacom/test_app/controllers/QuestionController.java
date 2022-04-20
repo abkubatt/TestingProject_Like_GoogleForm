@@ -1,5 +1,7 @@
 package kg.megacom.test_app.controllers;
 
+import kg.megacom.test_app.models.dto.QuestionDto;
+import kg.megacom.test_app.models.dto.SubjectDto;
 import kg.megacom.test_app.models.entities.Question;
 import kg.megacom.test_app.models.entities.Subject;
 import kg.megacom.test_app.services.QuestionService;
@@ -16,14 +18,14 @@ public class QuestionController {
 
     @GetMapping
     public String toSaveQuestion(){
-        Question question = new Question();
+        QuestionDto question = new QuestionDto();
         question.setQuestion("What is a different between class and interface");
         question.set_active(true);
         question.setImage("class vs interface");
         question.setScore(5);
-        question.setSubject(new Subject());
+        question.setSubject(new SubjectDto());
 
-        Question savedQuestion = questionService.save(question);
+        QuestionDto savedQuestion = questionService.save(question);
 
         return savedQuestion.getQuestion();
     }

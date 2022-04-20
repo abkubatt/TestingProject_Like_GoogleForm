@@ -8,6 +8,8 @@ import kg.megacom.test_app.services.LanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LanguageServiceImpl implements LanguageService {
 
@@ -33,7 +35,6 @@ public class LanguageServiceImpl implements LanguageService {
     @Override
     public LanguageDto update(LanguageDto languageDto) {
         boolean isExist = languageDao.existsById(languageDto.getId());
-        //Language languageFromDb = findById(language.getId());
         if(!isExist){
             return null;
         }else{
@@ -46,12 +47,17 @@ public class LanguageServiceImpl implements LanguageService {
 
     @Override
     public LanguageDto delete(LanguageDto languageDto) {
-        languageDto.set_active(false);
-        LanguageDto deletedLanguage = update(languageDto);
-        return deletedLanguage;
+        Language language = languageMapper.languageDtoToLanguage(languageDto);
+        language.set_active(false);
+        LanguageDto deletedLanguageDto = update(languageMapper.languageToLanguageDto(language));
+        return deletedLanguageDto;
     }
 
-
+    @Override
+    public List<LanguageDto> findAllByActive() {
+        List<Language> languages = languageDao.findAllByActive();
+        return languageMapper.languageListToLanguageDtoList(languages);
+    }
 
 
 //    @Override
