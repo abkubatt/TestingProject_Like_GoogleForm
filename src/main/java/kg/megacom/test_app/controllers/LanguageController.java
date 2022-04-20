@@ -4,24 +4,36 @@ import kg.megacom.test_app.models.dto.LanguageDto;
 import kg.megacom.test_app.models.entities.Language;
 import kg.megacom.test_app.services.LanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/language")
+@RequestMapping(value = "/api/v1/language")
 public class LanguageController {
 
     @Autowired
     private LanguageService languageService;
 
-    @GetMapping("/save")
-    public String testSaveLanguage(){
-        LanguageDto language = new LanguageDto();
-        language.setName("Java");
-        LanguageDto savedLang = languageService.save(language);
-        return savedLang.getName();
+    @PostMapping("/save")
+    public LanguageDto save(@RequestBody LanguageDto languageDto){
+        return languageService.save(languageDto);
     }
+    @GetMapping("/get")
+    public LanguageDto findById(@RequestParam Long id){
+        return languageService.findById(id);
+    }
+    @GetMapping("/list")
+    public List<LanguageDto> findAll(){
+        return languageService.findAllByActive();
+    }
+    @PutMapping("/update")
+    public LanguageDto update(@RequestBody LanguageDto languageDto){
+        return languageService.update(languageDto);
+    }
+
+
+
 
 
 
