@@ -24,12 +24,17 @@ public class LanguageController {
         return languageService.findById(id);
     }
     @GetMapping("/list")
-    public List<LanguageDto> findAll(){
+    public List<LanguageDto> findAllByActive(){
         return languageService.findAllByActive();
     }
     @PutMapping("/update")
     public LanguageDto update(@RequestBody LanguageDto languageDto){
         return languageService.update(languageDto);
+    }
+
+    @PutMapping("/delete")
+    public LanguageDto delete(@RequestBody LanguageDto languageDto){
+        return languageService.delete(languageDto);
     }
 
 

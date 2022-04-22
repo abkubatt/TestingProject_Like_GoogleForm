@@ -6,26 +6,30 @@ import kg.megacom.test_app.models.entities.Answer;
 import kg.megacom.test_app.models.entities.Question;
 import kg.megacom.test_app.services.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/answer")
+@RequestMapping(value = "/api/v1/answer")
 public class AnswerController {
 
     @Autowired
     private AnswerService answerService;
 
-    @GetMapping("/save")
-    public String toSaveAnswer(){
-        AnswerDto answer = new AnswerDto();
-        answer.setAnswer("private");
-        answer.set_active(true);
-        answer.setQuestion(new QuestionDto());
-        answer.set_true(true);
-
-        AnswerDto savedAnswer = answerService.save(answer);
-        return savedAnswer.getAnswer();
+    @PostMapping("/save")
+    public AnswerDto save(@RequestBody AnswerDto answerDto){
+        return answerService.save(answerDto);
     }
+
+    @GetMapping("/get")
+    public AnswerDto findById(@RequestParam Long id){
+        return answerService.findById(id);
+    }
+
+    @PutMapping("/list")
+    public List<AnswerDto> findAllByQuestion(@RequestBody QuestionDto questionDto){
+        return answerService.findAllByQuestion(questionDto);
+    }
+
 }

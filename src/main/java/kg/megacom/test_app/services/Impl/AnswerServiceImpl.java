@@ -3,6 +3,7 @@ package kg.megacom.test_app.services.Impl;
 import kg.megacom.test_app.dao.AnswerDao;
 import kg.megacom.test_app.mappers.AnswerMapper;
 import kg.megacom.test_app.models.dto.AnswerDto;
+import kg.megacom.test_app.models.dto.QuestionDto;
 import kg.megacom.test_app.models.entities.Answer;
 import kg.megacom.test_app.models.entities.Question;
 import kg.megacom.test_app.services.AnswerService;
@@ -53,8 +54,8 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public List<AnswerDto> findAllByQuestion(Question question) {
-        List<Answer> answers = answerDao.findAllByQuestion(question);
+    public List<AnswerDto> findAllByQuestion(QuestionDto questionDto) {
+        List<Answer> answers = answerDao.findAllByQuestion(questionDto);
         return answerMapper.answerListToAnswerDtoList(answers);
     }
 

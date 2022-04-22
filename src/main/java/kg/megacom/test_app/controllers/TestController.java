@@ -4,26 +4,40 @@ import kg.megacom.test_app.models.dto.TestDto;
 import kg.megacom.test_app.models.entities.Test;
 import kg.megacom.test_app.services.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.xml.crypto.OctetStreamData;
+import java.util.List;
 
 @RestController
-@RequestMapping("/test")
+@RequestMapping("/api/v1/test")
 public class TestController {
 
     @Autowired
     private TestService testService;
 
+    @PostMapping("/save")
+    public TestDto save(@RequestBody TestDto testDto){
+        return testService.save(testDto);
+    }
 
-    @GetMapping("/save")
-    public String testSaveTest(){
-        TestDto test = new TestDto();
-        test.setName("Java");
-        test.setNavi_user("Sanzhar");
+    @GetMapping("/get")
+    public TestDto findById(@RequestParam Long id){
+        return testService.findById(id);
+    }
 
-        TestDto savedTest = testService.save(test);
+    @PutMapping("/update")
+    public TestDto update(@RequestBody TestDto testDto){
+        return testService.update(testDto);
+    }
+    @PutMapping("/delete")
+    public TestDto delete(@RequestBody TestDto testDto){
+        return testService.delete(testDto);
+    }
 
-        return savedTest.getName();
+    @GetMapping("/findAllByActive")
+    public List<TestDto> findAllByActive(){
+        return testService.findAllByActive();
     }
 }
+
