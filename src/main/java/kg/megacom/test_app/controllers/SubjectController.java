@@ -4,6 +4,7 @@ import kg.megacom.test_app.models.dto.LanguageDto;
 import kg.megacom.test_app.models.dto.SubjectDto;
 import kg.megacom.test_app.models.entities.Language;
 import kg.megacom.test_app.models.entities.Subject;
+import kg.megacom.test_app.services.LanguageService;
 import kg.megacom.test_app.services.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,8 @@ public class SubjectController {
 
     @Autowired
     private SubjectService subjectService;
+//    @Autowired
+//    private LanguageService languageService;
 
     @PostMapping("/save")
     public SubjectDto save(@RequestBody SubjectDto subjectDto){
@@ -37,10 +40,11 @@ public class SubjectController {
         return subjectService.delete(subjectDto);
     }
 
-    @PutMapping("/findAllByLanguage")
-    public List<SubjectDto> findAllByLanguage(Language language){
-        return null;
-    }
+//    @GetMapping("/findAllByLanguage")
+//    public List<SubjectDto> findAllByLanguage(@RequestParam Long languageId){
+//        LanguageDto languageDto = languageService.findById(languageId);
+//        return subjectService.findAllByLanguage(languageDto);
+//    }
 
 
 

@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface LanguageDao extends JpaRepository<Language, Long> {
 
-    @Query("select l from Language l  where l.is_active = true")
+    @Query("select l from Language l  where l.isActive = true")
     List<Language> findAllByActive();
 }

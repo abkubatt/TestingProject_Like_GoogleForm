@@ -1,5 +1,6 @@
 package kg.megacom.test_app.services;
 
+import kg.megacom.test_app.models.dto.LanguageDto;
 import kg.megacom.test_app.models.dto.SubjectDto;
 import kg.megacom.test_app.models.entities.Language;
 
@@ -15,5 +16,5 @@ public interface SubjectService {
 
     SubjectDto delete(SubjectDto subjectDto);
 
-    List<SubjectDto> findAllByLanguage(Language language);
+    List<SubjectDto> findAllByLanguage(LanguageDto languageDto);
 }

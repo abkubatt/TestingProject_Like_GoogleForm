@@ -28,5 +28,15 @@ public class ResultServiceImpl implements ResultService {
         return resultMapper.resultToResultDto(result);
     }
 
+    @Override
+    public ResultDto update(ResultDto result) {
+        return null;
+    }
+
+    @Override
+    public ResultDto delete(ResultDto result) {
+        return null;
+    }
+
 
 }

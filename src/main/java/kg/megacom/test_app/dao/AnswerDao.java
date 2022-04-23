@@ -11,6 +11,7 @@ import java.util.List;
 
 @Repository
 public interface AnswerDao extends JpaRepository<Answer, Long> {
-    List<Answer> findAllByQuestion(QuestionDto questionDto);
+
+   // List<Answer> findAllByQuestionAndIsActive(Question question, boolean isActive);
 
 }

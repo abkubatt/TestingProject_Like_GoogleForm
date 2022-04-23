@@ -7,5 +7,5 @@ import lombok.Data;
 public class LanguageDto {
     private Long id;
     private String name;
-    private boolean is_active;
+    private boolean isActive;
 }

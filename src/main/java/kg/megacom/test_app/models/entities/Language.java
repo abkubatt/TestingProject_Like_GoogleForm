@@ -13,8 +13,7 @@ public class Language {
     @GeneratedValue
     private Long id;
     private String name;
-    @Column
-    private boolean is_active;
+    private boolean isActive;
 
 
 }

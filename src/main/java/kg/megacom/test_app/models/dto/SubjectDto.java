@@ -8,6 +8,6 @@ public class SubjectDto {
     private Long id;
     private String title;
     private String description;
-    private boolean is_active;
+    private boolean isActive;
     private LanguageDto language;
 }

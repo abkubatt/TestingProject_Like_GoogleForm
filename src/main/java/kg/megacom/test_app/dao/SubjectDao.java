@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface SubjectDao extends JpaRepository<Subject, Long> {
-    List<Subject> findAllByLanguage(Language language);
+   // List<Subject> findAllByLanguageAndActiveIsTrue(Language language);
 
 }

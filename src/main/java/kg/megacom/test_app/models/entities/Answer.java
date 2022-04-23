@@ -17,7 +17,8 @@ public class Answer {
     @ManyToOne
     @JoinColumn(name = "question_id")
     private Question question;
-    private boolean is_active;
+    private boolean isActive;
+
 
     
 }

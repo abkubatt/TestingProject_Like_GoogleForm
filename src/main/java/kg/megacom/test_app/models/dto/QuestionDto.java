@@ -7,7 +7,7 @@ public class QuestionDto {
     private Long id;
     private String question;
     private SubjectDto subject;
-    private boolean is_active;
+    private boolean isActive;
     private String image;
     private int score;
 }

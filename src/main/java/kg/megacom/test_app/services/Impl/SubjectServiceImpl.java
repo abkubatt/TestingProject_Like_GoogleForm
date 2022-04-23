@@ -1,7 +1,9 @@
 package kg.megacom.test_app.services.Impl;
 
 import kg.megacom.test_app.dao.SubjectDao;
+import kg.megacom.test_app.mappers.LanguageMapper;
 import kg.megacom.test_app.mappers.SubjectMapper;
+import kg.megacom.test_app.models.dto.LanguageDto;
 import kg.megacom.test_app.models.dto.SubjectDto;
 import kg.megacom.test_app.models.entities.Language;
 import kg.megacom.test_app.models.entities.Subject;
@@ -18,11 +20,12 @@ public class SubjectServiceImpl implements SubjectService {
     private SubjectDao subjectDao;
 
     private SubjectMapper subjectMapper = SubjectMapper.INSTANCE;
+    private LanguageMapper languageMapper = LanguageMapper.INSTANCE;
 
     @Override
     public SubjectDto save(SubjectDto subjectDto) {
         Subject subject = subjectMapper.subjectDtoToSubject(subjectDto);
-        subject.set_active(true);
+        subject.setActive(true);
         Subject subjectSaved = subjectDao.save(subject);
         return subjectMapper.subjectToSubjectDto(subjectSaved);
     }
@@ -50,14 +53,19 @@ public class SubjectServiceImpl implements SubjectService {
     @Override
     public SubjectDto delete(SubjectDto subjectDto) {
         Subject subject = subjectMapper.subjectDtoToSubject(subjectDto);
-        subject.set_active(false);
+        subject.setActive(false);
         SubjectDto deletedSubject = update(subjectMapper.subjectToSubjectDto(subject));
         return deletedSubject;
     }
 
     @Override
-    public List<SubjectDto> findAllByLanguage(Language language) {
-        List<Subject> subjects = subjectDao.findAllByLanguage(language);
-        return subjectMapper.subjectListToSubjectDtoList(subjects);
+    public List<SubjectDto> findAllByLanguage(LanguageDto languageDto) {
+        return null;
     }
+
+//    @Override
+//    public List<SubjectDto> findAllByLanguage(LanguageDto languageDto) {
+//        List<Subject> subjects = subjectDao.findAllByLanguageAndActiveIsTrue(languageMapper.languageDtoToLanguage(languageDto));
+//        return subjectMapper.subjectListToSubjectDtoList(subjects);
+//    }
 }

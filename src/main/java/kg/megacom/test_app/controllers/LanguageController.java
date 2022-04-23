@@ -37,40 +37,4 @@ public class LanguageController {
         return languageService.delete(languageDto);
     }
 
-
-
-
-
-
-
-
-
-
-
-//    @GetMapping("/findAllByIs_activeIsTrue")
-//    public List<Language> toFindAllByIs_activeIsTrueLanguage(){
-//        List<Language> findAllByIs_activeIsTrueLanguage = languageService.findAllByIs_activeIsTrue();
-//        return findAllByIs_activeIsTrueLanguage;
-//    }
-
-    //    @GetMapping("/findAllBy_activeTrue")
-//    public List<Language> findAllBy_activeTrueLanguage(){
-//       List<Language> findAllBy_activeTrueLanguage = languageService.findAllBy_activeTrue();
-//       return findAllBy_activeTrueLanguage;
-//    }
-
-
-
-
-//    @GetMapping("/save/change")
-//    public String testSaveChange(){
-//
-//        Language language = languageService.findById(2L);
-//        System.out.println(language.is_active());
-//        //language.set_active(false);
-//
-//        Language updatedLanguage = languageService.delete(language);
-//        System.out.println(updatedLanguage.is_active());
-//        return updatedLanguage.getName();
-//    }
 }

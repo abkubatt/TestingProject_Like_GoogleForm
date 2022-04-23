@@ -2,6 +2,7 @@ package kg.megacom.test_app.services.Impl;
 
 import kg.megacom.test_app.dao.AnswerDao;
 import kg.megacom.test_app.mappers.AnswerMapper;
+import kg.megacom.test_app.mappers.QuestionMapper;
 import kg.megacom.test_app.models.dto.AnswerDto;
 import kg.megacom.test_app.models.dto.QuestionDto;
 import kg.megacom.test_app.models.entities.Answer;
@@ -18,11 +19,12 @@ public class AnswerServiceImpl implements AnswerService {
     @Autowired
     private AnswerDao answerDao;
     private AnswerMapper answerMapper = AnswerMapper.INSTANCE;
+    private QuestionMapper questionMapper;
 
     @Override
     public AnswerDto save(AnswerDto answerDto) {
         Answer answer = answerMapper.answerDtoToAnswer(answerDto);
-        answer.set_active(true);
+        answer.setActive(true);
         Answer answerSaved = answerDao.save(answer);
         return answerMapper.answerToAnswerDto(answerSaved);
     }
@@ -48,15 +50,20 @@ public class AnswerServiceImpl implements AnswerService {
     @Override
     public AnswerDto delete(AnswerDto answerDto) {
         Answer answer = answerMapper.answerDtoToAnswer(answerDto);
-        answer.set_active(false);
+        answer.setActive(false);
         AnswerDto deletedAnswerDto = update(answerMapper.answerToAnswerDto(answer));
         return deletedAnswerDto;
     }
 
     @Override
     public List<AnswerDto> findAllByQuestion(QuestionDto questionDto) {
-        List<Answer> answers = answerDao.findAllByQuestion(questionDto);
-        return answerMapper.answerListToAnswerDtoList(answers);
+        return null;
     }
+
+//    @Override
+//    public List<AnswerDto> findAllByQuestion(QuestionDto questionDto) {
+//        List<Answer> answers = answerDao.findAllByQuestionAndIsActive(questionMapper.questionDtoToQuestion(questionDto),true);
+//        return answerMapper.answerListToAnswerDtoList(answers);
+//    }
 
 }

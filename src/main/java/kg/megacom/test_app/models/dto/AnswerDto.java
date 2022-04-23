@@ -8,5 +8,5 @@ public class AnswerDto {
     private String answer;
     private boolean is_true;
     private QuestionDto question;
-    private boolean is_active;
+    private boolean isActive;
 }

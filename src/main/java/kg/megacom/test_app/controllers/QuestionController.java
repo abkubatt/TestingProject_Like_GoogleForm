@@ -2,9 +2,10 @@ package kg.megacom.test_app.controllers;
 
 import kg.megacom.test_app.models.dto.QuestionDto;
 import kg.megacom.test_app.models.dto.SubjectDto;
-import kg.megacom.test_app.models.entities.Question;
+import kg.megacom.test_app.models.dto.json.QuestionSaveInfo;
 import kg.megacom.test_app.models.entities.Subject;
 import kg.megacom.test_app.services.QuestionService;
+import kg.megacom.test_app.services.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,11 +16,17 @@ import java.util.List;
 public class QuestionController {
     @Autowired
     private QuestionService questionService;
+    @Autowired
+    private SubjectService subjectService;
 
     @PostMapping("/save")
-    public QuestionDto save(@RequestBody QuestionDto questionDto){
-        return questionService.save(questionDto);
+    public QuestionDto save(){
+        return null;
     }
+//    @PostMapping("/save")
+//    public QuestionDto save(@RequestBody QuestionSaveInfo questionSaveInfo){
+//        return questionService.save(questionSaveInfo);
+//    }
 
     @PutMapping("/update")
     public QuestionDto update(@RequestBody QuestionDto questionDto){
@@ -33,14 +40,13 @@ public class QuestionController {
     }
 
     @PutMapping("/delete")
-    public QuestionDto delete(@RequestBody QuestionDto questionDto){
+    public boolean delete(@RequestBody QuestionDto questionDto){
         return questionService.delete(questionDto);
     }
-    @GetMapping("/list")
-    public List<QuestionDto> findAllBySubject(Subject subject){
-        return null;
+    @GetMapping("/findAllBySubject")
+    public List<QuestionDto> findAllBySubject(@RequestParam Long subjectId){
+        SubjectDto subjectDto = subjectService.findById(subjectId);
+        return questionService.findAllBySubject(subjectDto);
     }
-
-
 
 }

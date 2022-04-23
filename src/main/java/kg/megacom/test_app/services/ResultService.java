@@ -7,6 +7,9 @@ public interface ResultService {
     ResultDto save(ResultDto resultDto);
 
     ResultDto findById(Long id);
+    ResultDto update(ResultDto result);
+
+    ResultDto delete(ResultDto result);
 
 
 }

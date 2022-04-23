@@ -21,7 +21,7 @@ public class LanguageServiceImpl implements LanguageService {
     @Override
     public LanguageDto save(LanguageDto languageDto) {
         Language language = languageMapper.languageDtoToLanguage(languageDto);
-        language.set_active(true);
+        language.setActive(true);
         Language languageSaved = languageDao.save(language);
         return languageMapper.languageToLanguageDto(languageSaved);
     }
@@ -48,7 +48,7 @@ public class LanguageServiceImpl implements LanguageService {
     @Override
     public LanguageDto delete(LanguageDto languageDto) {
         Language language = languageMapper.languageDtoToLanguage(languageDto);
-        language.set_active(false);
+        language.setActive(false);
         LanguageDto deletedLanguageDto = update(languageMapper.languageToLanguageDto(language));
         return deletedLanguageDto;
     }

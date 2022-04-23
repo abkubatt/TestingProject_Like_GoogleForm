@@ -5,6 +5,7 @@ import kg.megacom.test_app.models.dto.QuestionDto;
 import kg.megacom.test_app.models.entities.Answer;
 import kg.megacom.test_app.models.entities.Question;
 import kg.megacom.test_app.services.AnswerService;
+import kg.megacom.test_app.services.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,9 +28,10 @@ public class AnswerController {
         return answerService.findById(id);
     }
 
-    @PutMapping("/list")
-    public List<AnswerDto> findAllByQuestion(@RequestBody QuestionDto questionDto){
-        return answerService.findAllByQuestion(questionDto);
-    }
+//    @PutMapping("/findAllByQuestion")
+//    public List<AnswerDto> findAllByQuestion(@RequestParam Long questionId){
+//        QuestionDto questionDto = questionService.findById(questionId);
+//        return answerService.findAllByQuestion(questionDto);
+//    }
 
 }

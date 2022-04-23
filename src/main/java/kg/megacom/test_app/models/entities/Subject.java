@@ -15,9 +15,11 @@ public class Subject {
     private Long id;
     private String title;
     private String description;
-    private boolean is_active;
+
+    private boolean isActive;
     @ManyToOne
     @JoinColumn(name = "lang_id")
     private Language language;
+
 
 }

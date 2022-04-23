@@ -3,6 +3,7 @@ package kg.megacom.test_app.services;
 import kg.megacom.test_app.models.dto.AnswerDto;
 
 import kg.megacom.test_app.models.dto.QuestionDto;
+import kg.megacom.test_app.models.entities.Answer;
 import kg.megacom.test_app.models.entities.Question;
 
 import java.util.List;
