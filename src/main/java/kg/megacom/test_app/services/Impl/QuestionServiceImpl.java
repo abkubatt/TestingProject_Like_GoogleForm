@@ -31,16 +31,13 @@ public class QuestionServiceImpl implements QuestionService {
     @Autowired
     private SubjectService subjectService;
 
-    //@Override
-//    public QuestionDto save(QuestionDto questionDto) {
-//        Question question = questionMapper.questionDtoToQuestion(questionDto);
-//        question.setActive(true);
-//        Question questionSaved = questionDao.save(question);
-//        return questionMapper.questionToQuestionDto(questionSaved);
-//    }
 
     @Override
     public QuestionDto save(QuestionSaveInfo questionSaveInfo) {
+        AnswerSaveInfo answerSaveInfo = questionSaveInfo.getAnswers().stream().filter(y-> y.isTrue() == true).findFirst().orElse(null);
+        if (answerSaveInfo == null){
+            return null;
+        }
         Question question = new Question();
         question.setActive(true);
         question.setImage(questionSaveInfo.getImage());
@@ -93,18 +90,9 @@ public class QuestionServiceImpl implements QuestionService {
         return deletedQuestion == null ? false : true;
     }
 
-
-//    @Override
-//    public QuestionDto delete(QuestionDto questionDto) {
-//        Question question = questionMapper.questionDtoToQuestion(questionDto);
-//        question.set_active(false);
-//        QuestionDto deletedQuestion = update(questionMapper.questionToQuestionDto(question));
-//        return deletedQuestion;
-//    }
-
     @Override
     public List<QuestionDto> findAllBySubject(SubjectDto subjectDto) {
-        List<Question> questions = questionDao.findAllBySubjectAndIsActiveTrue(subjectMapper.subjectDtoToSubject(subjectDto));
+        List<Question> questions = questionDao.findAllBySubjectAndIsActiveTrue(subjectDto.getId());
         return questionMapper.questionListToQuestionDtoList(questions);
     }
 }

@@ -16,6 +16,7 @@ public class TestSubjectServiceImpl implements TestSubjectService {
     @Override
     public TestSubjectDto save(TestSubjectDto testSubjectDto) {
         TestSubject testSubject = testSubjectMapper.testSubjectDtoToTestSubject(testSubjectDto);
+        testSubject.setActive(true);
         TestSubject testSubjectSaved = testSubjectDao.save(testSubject);
         return testSubjectMapper.testSubjectToTestSubjectDto(testSubjectSaved);
     }
@@ -39,7 +40,10 @@ public class TestSubjectServiceImpl implements TestSubjectService {
     }
 
     @Override
-    public TestSubjectDto delete(TestSubjectDto test_subject) {
-        return null;
+    public TestSubjectDto delete(TestSubjectDto testSubjectDto) {
+        TestSubject testSubject = testSubjectMapper.testSubjectDtoToTestSubject(testSubjectDto);
+        testSubject.setActive(false);
+        TestSubjectDto deletedTestSubject = update(testSubjectMapper.testSubjectToTestSubjectDto(testSubject));
+        return deletedTestSubject;
     }
 }

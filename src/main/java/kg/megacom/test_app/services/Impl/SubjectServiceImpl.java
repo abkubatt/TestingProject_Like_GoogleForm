@@ -58,14 +58,10 @@ public class SubjectServiceImpl implements SubjectService {
         return deletedSubject;
     }
 
+
     @Override
     public List<SubjectDto> findAllByLanguage(LanguageDto languageDto) {
-        return null;
+        List<Subject> subjects = subjectDao.findAllByLanguageAndIsAndActiveTrue(languageDto.getId());
+        return subjectMapper.subjectListToSubjectDtoList(subjects);
     }
-
-//    @Override
-//    public List<SubjectDto> findAllByLanguage(LanguageDto languageDto) {
-//        List<Subject> subjects = subjectDao.findAllByLanguageAndActiveIsTrue(languageMapper.languageDtoToLanguage(languageDto));
-//        return subjectMapper.subjectListToSubjectDtoList(subjects);
-//    }
 }

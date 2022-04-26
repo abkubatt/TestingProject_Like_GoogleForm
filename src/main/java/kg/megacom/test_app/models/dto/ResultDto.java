@@ -11,4 +11,5 @@ public class ResultDto {
     private String testUser;
     private String result;
     private Date date;
+    private boolean isActive;
 }

@@ -9,4 +9,5 @@ public class TestSubjectDto {
     private SubjectDto subject;
     private TestDto test;
     private int questionAmount;
+    private boolean isActive;
 }

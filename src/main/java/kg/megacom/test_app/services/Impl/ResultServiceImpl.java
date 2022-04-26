@@ -8,6 +8,8 @@ import kg.megacom.test_app.services.ResultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ResultServiceImpl implements ResultService {
     @Autowired
@@ -18,6 +20,7 @@ public class ResultServiceImpl implements ResultService {
     @Override
     public ResultDto save(ResultDto resultDto) {
         Result result = resultMapper.resultDtoToResult(resultDto);
+        result.setActive(true);
         Result resultSaved = resultDao.save(result);
         return resultMapper.resultToResultDto(resultSaved);
     }
@@ -29,13 +32,23 @@ public class ResultServiceImpl implements ResultService {
     }
 
     @Override
-    public ResultDto update(ResultDto result) {
-        return null;
+    public ResultDto update(ResultDto resultDto) {
+        boolean isExists = resultDao.existsById(resultDto.getId());
+        if (!isExists){
+            return null;
+        }else {
+            Result result = resultMapper.resultDtoToResult(resultDto);
+            Result updatedResult = resultDao.save(result);
+            return resultMapper.resultToResultDto(updatedResult);
+        }
     }
 
     @Override
-    public ResultDto delete(ResultDto result) {
-        return null;
+    public ResultDto delete(ResultDto resultDto) {
+        Result result = resultMapper.resultDtoToResult(resultDto);
+        result.setActive(false);
+        ResultDto deletedResult = update(resultMapper.resultToResultDto(result));
+        return deletedResult;
     }
 
 

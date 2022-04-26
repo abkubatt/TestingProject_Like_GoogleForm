@@ -21,6 +21,7 @@ public class TestSubject {
     @JoinColumn(name = "test_id")
     private Test test;
     private int questionAmount;
-
+    @Column
+    private boolean isActive;
 
 }

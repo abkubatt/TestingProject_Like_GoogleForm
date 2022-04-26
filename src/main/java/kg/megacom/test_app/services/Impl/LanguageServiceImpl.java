@@ -59,22 +59,4 @@ public class LanguageServiceImpl implements LanguageService {
         return languageMapper.languageListToLanguageDtoList(languages);
     }
 
-
-//    @Override
-//    public List<Language> findAllByIs_activeIsTrue() {
-//        List<Language> languages = languageDao.findAllByIs_activeIsTrue();
-//        return languages;
-//    }
-//
-//    @Override
-//    public List<Language> findAllBy_activeTrue() {
-//        List<Language> languages2 = languageDao.findAllBy_activeTrue();
-//        return languages2;
-//    }
-    //    @Override
-//    public List<Language> findAllByActive() {
-//        List<Language> languages = languageDao.findAllByIs_activeIsTrue();
-//        return languages;
-//    }
-
 }

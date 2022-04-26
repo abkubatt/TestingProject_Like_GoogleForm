@@ -20,6 +20,7 @@ public class TestSubjectQuestion {
     @ManyToOne
     @JoinColumn(name = "test_sub_id")
     private TestSubject testSubject;
-
+    @Column
+    private boolean isActive;
 
 }

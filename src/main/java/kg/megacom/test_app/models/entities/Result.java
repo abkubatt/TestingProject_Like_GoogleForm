@@ -18,6 +18,8 @@ public class Result {
     private String testUser;
     private String result;
     private Date date;
+    @Column
+    private boolean isActive;
 
 
 }

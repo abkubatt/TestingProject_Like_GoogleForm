@@ -7,4 +7,5 @@ public class TestSubjectQuestionDto {
     private Long id;
     private QuestionDto question;
     private TestSubjectDto testSubject;
+    private boolean isActive;
 }

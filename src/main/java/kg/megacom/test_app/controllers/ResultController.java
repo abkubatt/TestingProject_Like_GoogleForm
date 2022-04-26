@@ -21,10 +21,18 @@ public class ResultController {
         return resultService.save(resultDto);
     }
 
-    @GetMapping("/get")
+    @GetMapping("/getById")
     public ResultDto findById(@RequestParam Long id){
         return resultService.findById(id);
     }
 
+    @PutMapping("/update")
+    public ResultDto update(@RequestBody ResultDto resultDto){
+        return resultService.update(resultDto);
+    }
+    @PutMapping("/delete")
+    public ResultDto delete(@RequestBody ResultDto resultDto){
+        return resultService.delete(resultDto);
+    }
 
 }

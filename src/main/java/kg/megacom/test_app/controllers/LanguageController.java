@@ -17,13 +17,14 @@ public class LanguageController {
 
     @PostMapping("/save")
     public LanguageDto save(@RequestBody LanguageDto languageDto){
+
         return languageService.save(languageDto);
     }
-    @GetMapping("/get")
+    @GetMapping("/getById")
     public LanguageDto findById(@RequestParam Long id){
         return languageService.findById(id);
     }
-    @GetMapping("/list")
+    @GetMapping("/findAllByActive")
     public List<LanguageDto> findAllByActive(){
         return languageService.findAllByActive();
     }

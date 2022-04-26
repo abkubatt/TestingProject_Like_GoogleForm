@@ -20,13 +20,9 @@ public class QuestionController {
     private SubjectService subjectService;
 
     @PostMapping("/save")
-    public QuestionDto save(){
-        return null;
+    public QuestionDto save(@RequestBody QuestionSaveInfo questionSaveInfo){
+        return questionService.save(questionSaveInfo);
     }
-//    @PostMapping("/save")
-//    public QuestionDto save(@RequestBody QuestionSaveInfo questionSaveInfo){
-//        return questionService.save(questionSaveInfo);
-//    }
 
     @PutMapping("/update")
     public QuestionDto update(@RequestBody QuestionDto questionDto){
@@ -34,7 +30,7 @@ public class QuestionController {
     }
 
 
-    @GetMapping("/get")
+    @GetMapping("/getById")
     public QuestionDto findById(@RequestParam Long id){
         return questionService.findById(id);
     }

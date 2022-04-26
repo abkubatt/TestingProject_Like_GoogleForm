@@ -16,6 +16,7 @@ public class TestSubjectQuestionServiceImpl implements TestSubjectQuestionServic
     @Override
     public TestSubjectQuestionDto save(TestSubjectQuestionDto testSubjectQuestionDto) {
         TestSubjectQuestion testSubjectQuestion = testSubjectQuestionMapper.testSubjectQuestionDtoToTestSubjectQuestion(testSubjectQuestionDto);
+        testSubjectQuestion.setActive(true);
         TestSubjectQuestion testSubjectQuestionSaved = testSubjectQuestionDao.save(testSubjectQuestion);
         return testSubjectQuestionMapper.testSubjectQuestionToTestSubjectQuestionDto(testSubjectQuestionSaved);
     }
@@ -40,6 +41,9 @@ public class TestSubjectQuestionServiceImpl implements TestSubjectQuestionServic
 
     @Override
     public TestSubjectQuestionDto delete(TestSubjectQuestionDto testSubjectQuestionDto) {
-        return null;
+        TestSubjectQuestion testSubjectQuestion = testSubjectQuestionMapper.testSubjectQuestionDtoToTestSubjectQuestion(testSubjectQuestionDto);
+        testSubjectQuestion.setActive(false);
+        TestSubjectQuestionDto deletedTestSubjectQuestion = update(testSubjectQuestionMapper.testSubjectQuestionToTestSubjectQuestionDto(testSubjectQuestion));
+        return deletedTestSubjectQuestion;
     }
 }

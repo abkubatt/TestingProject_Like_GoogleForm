@@ -12,9 +12,11 @@ import java.util.List;
 
 @Repository
 public interface QuestionDao extends JpaRepository<Question, Long> {
-//    select * from Cars c
-//    inner join Colours cl  on c.colourID = cl.ID
-    //@Query("select q from Question q inner join Subject s on q.subject.id = s.id")
-    List<Question> findAllBySubjectAndIsActiveTrue(Subject subjectDto);
+
+    //@Query("select q from Question q where q.subject = ?1 and q.isActive = true")
+    //List<Question> findAllBySubjectAndIsActiveTrue(Subject subject);
+    @Query(value = "select * from tb_question tbq where tbq.subject_id ?1 and tbq.is_active = true",nativeQuery = true)
+    List<Question> findAllBySubjectAndIsActiveTrue(Long subjectId);
+
 
 }

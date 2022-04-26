@@ -21,7 +21,7 @@ public class TestController {
         return testService.save(testDto);
     }
 
-    @GetMapping("/get")
+    @GetMapping("/getById")
     public TestDto findById(@RequestParam Long id){
         return testService.findById(id);
     }

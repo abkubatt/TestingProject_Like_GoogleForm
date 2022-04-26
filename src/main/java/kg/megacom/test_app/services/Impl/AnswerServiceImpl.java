@@ -19,7 +19,7 @@ public class AnswerServiceImpl implements AnswerService {
     @Autowired
     private AnswerDao answerDao;
     private AnswerMapper answerMapper = AnswerMapper.INSTANCE;
-    private QuestionMapper questionMapper;
+    private QuestionMapper questionMapper = QuestionMapper.INSTANCE;
 
     @Override
     public AnswerDto save(AnswerDto answerDto) {
@@ -57,13 +57,10 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public List<AnswerDto> findAllByQuestion(QuestionDto questionDto) {
-        return null;
+        List<Answer> answers = answerDao.findAllByQuestionAndActiveTrue(questionDto.getId());
+        return answerMapper.answerListToAnswerDtoList(answers);
     }
 
-//    @Override
-//    public List<AnswerDto> findAllByQuestion(QuestionDto questionDto) {
-//        List<Answer> answers = answerDao.findAllByQuestionAndIsActive(questionMapper.questionDtoToQuestion(questionDto),true);
-//        return answerMapper.answerListToAnswerDtoList(answers);
-//    }
+
 
 }

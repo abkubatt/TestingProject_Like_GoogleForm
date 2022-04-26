@@ -13,4 +13,5 @@ public interface LanguageDao extends JpaRepository<Language, Long> {
 
     @Query("select l from Language l  where l.isActive = true")
     List<Language> findAllByActive();
+
 }
