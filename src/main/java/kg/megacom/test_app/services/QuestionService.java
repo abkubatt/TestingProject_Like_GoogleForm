@@ -19,4 +19,6 @@ public interface QuestionService {
     boolean delete(QuestionDto questionDto);
 
     List<QuestionDto> findAllBySubject(SubjectDto subjectDto);
+
+    List<QuestionDto> findQuestionsRandomly(SubjectDto subjectDto, int QuestionAmount);
 }

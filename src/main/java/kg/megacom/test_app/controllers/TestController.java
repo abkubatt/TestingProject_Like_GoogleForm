@@ -1,6 +1,8 @@
 package kg.megacom.test_app.controllers;
 
 import kg.megacom.test_app.models.dto.TestDto;
+import kg.megacom.test_app.models.dto.json.TestCreateJson;
+import kg.megacom.test_app.models.dto.json.TestResultJson;
 import kg.megacom.test_app.models.entities.Test;
 import kg.megacom.test_app.services.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,27 +19,33 @@ public class TestController {
     private TestService testService;
 
     @PostMapping("/save")
-    public TestDto save(@RequestBody TestDto testDto){
+    public TestDto save(@RequestBody TestDto testDto) {
         return testService.save(testDto);
     }
 
     @GetMapping("/getById")
-    public TestDto findById(@RequestParam Long id){
+    public TestDto findById(@RequestParam Long id) {
         return testService.findById(id);
     }
 
     @PutMapping("/update")
-    public TestDto update(@RequestBody TestDto testDto){
+    public TestDto update(@RequestBody TestDto testDto) {
         return testService.update(testDto);
     }
+
     @PutMapping("/delete")
-    public TestDto delete(@RequestBody TestDto testDto){
+    public TestDto delete(@RequestBody TestDto testDto) {
         return testService.delete(testDto);
     }
 
     @GetMapping("/findAllByActive")
-    public List<TestDto> findAllByActive(){
+    public List<TestDto> findAllByActive() {
         return testService.findAllByActive();
+    }
+
+    @PostMapping("/createNewTest")
+    public TestResultJson createNewTest(@RequestBody TestCreateJson createJson) {
+        return testService.createNewTest(createJson);
     }
 }
 

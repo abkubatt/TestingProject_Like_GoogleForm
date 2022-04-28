@@ -18,5 +18,6 @@ public interface QuestionDao extends JpaRepository<Question, Long> {
     @Query(value = "select * from tb_question tbq where tbq.subject_id ?1 and tbq.is_active = true",nativeQuery = true)
     List<Question> findAllBySubjectAndIsActiveTrue(Long subjectId);
 
-
+    @Query(value = "select * from tb_question q where q.is_active = true and q.subject_id = ?1 order by RANDOM() LIMIT ?2",nativeQuery = true)
+    List<Question> findAllBySubjectByRandom(Long subjectId, int questionAmount);
 }

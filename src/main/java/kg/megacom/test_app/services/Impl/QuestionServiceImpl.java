@@ -95,4 +95,10 @@ public class QuestionServiceImpl implements QuestionService {
         List<Question> questions = questionDao.findAllBySubjectAndIsActiveTrue(subjectDto.getId());
         return questionMapper.questionListToQuestionDtoList(questions);
     }
+
+    @Override
+    public List<QuestionDto> findQuestionsRandomly(SubjectDto subjectDto, int QuestionAmount) {
+        List<Question> questions = questionDao.findAllBySubjectByRandom(subjectDto.getId(), QuestionAmount);
+        return questionMapper.questionListToQuestionDtoList(questions);
+    }
 }
