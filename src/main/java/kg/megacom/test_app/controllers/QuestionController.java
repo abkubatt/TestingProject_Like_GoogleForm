@@ -3,13 +3,12 @@ package kg.megacom.test_app.controllers;
 import kg.megacom.test_app.models.dto.QuestionDto;
 import kg.megacom.test_app.models.dto.SubjectDto;
 import kg.megacom.test_app.models.dto.json.QuestionSaveInfo;
-import kg.megacom.test_app.models.entities.Subject;
 import kg.megacom.test_app.services.QuestionService;
 import kg.megacom.test_app.services.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+
 
 @RestController
 @RequestMapping(value = "/api/v1/question")

@@ -1,4 +1,4 @@
-package kg.megacom.test_app.models.dto.json;
+package kg.megacom.test_app.models.dto.json.create;
 
 import lombok.Data;
 

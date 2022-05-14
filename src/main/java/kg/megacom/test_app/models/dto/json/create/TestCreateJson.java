@@ -1,5 +1,6 @@
-package kg.megacom.test_app.models.dto.json;
+package kg.megacom.test_app.models.dto.json.create;
 
+import kg.megacom.test_app.models.dto.json.create.SubjectJson;
 import lombok.Data;
 
 import java.util.List;

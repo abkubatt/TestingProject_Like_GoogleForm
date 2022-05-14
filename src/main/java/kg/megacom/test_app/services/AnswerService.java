@@ -19,4 +19,6 @@ public interface AnswerService {
     AnswerDto delete(AnswerDto answerDto);
 
     List<AnswerDto> findAllByQuestion(QuestionDto questionDto);
+    List<AnswerDto> findAllByQuestionAndTrue(QuestionDto questionDto);
+
 }
